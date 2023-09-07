@@ -18,7 +18,15 @@ os.getcwd()   # print current working directory
 # import libraries
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn.pipeline import make_pipeline
 
+''' 
+Task 1: Blood pressure Analysis 
+'''
 # Load in the data
 df = pd.read_csv('bloodpressure-23.csv', index_col = None)
 
@@ -30,6 +38,15 @@ df.shape # 100 rows, 12 columns
 
 # Column names
 df.columns.values
+
+'''
+2. Create polynomial regression models, to predict systolic pressure 
+using the SERUM-CHOL feature, for degrees vary from 1 to 14. 
+Perform 10-fold cross validation. Calculate its square roots of the 
+mean square errors (RMSE), and the mean RMSE.
+Display the mean RMSEs for the 14 different degrees. Produce a cross validation
+error plot using the mean RMSE with 1 to 14 different degrees
+'''
 
 
 
