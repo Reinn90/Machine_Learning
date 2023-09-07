@@ -48,5 +48,34 @@ Display the mean RMSEs for the 14 different degrees. Produce a cross validation
 error plot using the mean RMSE with 1 to 14 different degrees
 '''
 
+# Set the feature and target variables
+X = df[['SERUM-CHOL']]
+y = df['SYSTOLIC']
+
+# Perform Polynomial regression model for degrees 1-14
+# Conduct a loop for the varying degrees using Pipeline
+
+degrees = list(range(1,15))  # degree list from 1-14
+mean_rmse = []               # list to store the mean_RMSE from each model
+
+for degree in degrees:
+    model = make_pipeline(PolynomialFeatures(degree), 
+                          StandardScaler(), LinearRegression())
+    rmse = np.sqrt(-cross_val_score(model, X, y, 
+                                    scoring = 'neg_mean_squared_error',
+                                    cv = 10))
+    mean_rmse.append(np.mean(rmse))
+    
+# display the mean_rmse
+for degree, rmse in zip(degrees, mean_rmse):
+    print(f"Degree {degree}: Mean RMSE = {rmse}")
+
+# Create the cross-validation error plot
+plt.plot(degrees, mean_rmse, marker='o')
+plt.xlabel("Degree")
+plt.ylabel("Mean RMSE")
+plt.title("Cross-Validation Error Plot")
+plt.show()
+
 
 
