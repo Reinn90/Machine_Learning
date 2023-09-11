@@ -62,12 +62,12 @@ X_recovered = pca.inverse_transform(X_reduced)
 # second way to find the optimal d, n_components=0.95
 ###################
 
-# pca = PCA(n_components=0.95)
-# X_reduced = pca.fit_transform(X_train)
-# pca.n_components_
-# #154
-# np.sum(pca.explained_variance_ratio_)
-# #0.950373730459223
+pca = PCA(n_components=0.95)
+X_reduced = pca.fit_transform(X_train)
+pca.n_components_
+#154
+np.sum(pca.explained_variance_ratio_)
+#0.950373730459223
 
 
 
